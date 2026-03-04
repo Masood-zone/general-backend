@@ -6,8 +6,8 @@ const findUserByEmail = (email) => prisma_1.prisma.user.findUnique({ where: { em
 exports.findUserByEmail = findUserByEmail;
 const findUserById = (id) => prisma_1.prisma.user.findUnique({ where: { id } });
 exports.findUserById = findUserById;
-const createUser = (email, passwordHash) => prisma_1.prisma.user.create({
-    data: { email, passwordHash },
+const createUser = (input) => prisma_1.prisma.user.create({
+    data: { email: input.email, name: input.name, passwordHash: input.passwordHash },
 });
 exports.createUser = createUser;
 const updateUserPassword = (id, passwordHash) => prisma_1.prisma.user.update({

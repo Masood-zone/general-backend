@@ -6,9 +6,13 @@ export const findUserByEmail = (email: string) =>
 export const findUserById = (id: string) =>
   prisma.user.findUnique({ where: { id } });
 
-export const createUser = (email: string, passwordHash: string) =>
+export const createUser = (input: {
+  email: string;
+  name: string;
+  passwordHash: string;
+}) =>
   prisma.user.create({
-    data: { email, passwordHash },
+    data: { email: input.email, name: input.name, passwordHash: input.passwordHash },
   });
 
 export const updateUserPassword = (id: string, passwordHash: string) =>

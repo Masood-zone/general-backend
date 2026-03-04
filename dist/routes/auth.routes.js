@@ -37,6 +37,7 @@ const express_1 = require("express");
 const controller = __importStar(require("../controllers/auth.controller"));
 const require_auth_middleware_1 = require("../middleware/require-auth.middleware");
 const router = (0, express_1.Router)();
+router.post("/sign-up", controller.signup);
 router.post("/signup", controller.signup);
 router.post("/login", controller.login);
 router.post("/logout", require_auth_middleware_1.requireAuth, controller.logout);

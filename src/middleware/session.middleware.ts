@@ -4,12 +4,19 @@ import { env } from "../config/env";
 
 const PgSession = connectPg(session);
 
+const sessionSecret = env.sessionSecret;
+if (!sessionSecret) {
+  throw new Error(
+    "SESSION_SECRET is required when using sessionMiddleware. Set it in your .env"
+  );
+}
+
 export const sessionMiddleware = session({
   name: "sid",
   store: new PgSession({
     conString: env.databaseUrl,
   }),
-  secret: env.sessionSecret,
+  secret: sessionSecret,
   resave: false,
   saveUninitialized: false,
   cookie: {
